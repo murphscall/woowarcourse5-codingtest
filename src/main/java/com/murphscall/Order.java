@@ -20,4 +20,12 @@ public class Order {
                 .reduce(Money.ZERO, Money::plus);
     }
 
+
+    public LocalDate getOrderedAt() {
+        return orderedAt;
+    }
+
+    public Money getTotalAmount() {
+        return totalAmount;
+    }
 }
