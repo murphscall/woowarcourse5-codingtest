@@ -1,6 +1,7 @@
 package com.murphscall;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,27 +13,28 @@ public class PosCounter {
         this.discountPolicies = Arrays.asList(discountPolicies);
     }
 
-    public void processOrder(Order order) {
+    public OrderResponse processOrder(Order order) {
 
-        // 할인전 가격
+        // 주문 메뉴
+        List<OrderLine> orderLines = order.getOrderLines();
+        // 할인전 총 주문 금액
         Money totalPrice = order.getTotalAmount();
-        // 할인 가격을 계산하라
-        Money money = calculateTotalDiscount(order);
-        // 할인된 가격을 계산하라
-        Money finalAmount = totalPrice.minus(money);
+        // 혜택 내역
+        List<DiscountResult> discountResults = calculateTotalDiscount(order);
 
-        System.out.println("할인 전 가격: " + order.getTotalAmount());
-        System.out.println("할인 가격 : " + money);
-        System.out.println("할인된 가격 : " + totalPrice);
+
+        return OrderResponse.of(orderLines, totalPrice, discountResults);
     }
 
-    private Money calculateTotalDiscount(Order order) {
-        Money sum = Money.ZERO;
+    private List<DiscountResult> calculateTotalDiscount(Order order) {
+
+        List<DiscountResult> result = new ArrayList<>();
+
         for(DiscountPolicy policy : discountPolicies){
             Money discount = policy.calculateDiscountAmount(order);
-            sum = sum.plus(discount);
+            result.add(new DiscountResult(policy.getName(), discount));
         }
-        return sum;
+        return result;
     }
 
 

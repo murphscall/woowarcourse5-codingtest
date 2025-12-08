@@ -13,7 +13,8 @@ public class OrderController {
         String visitDate = InputView.visitDateInput();
         String orderMenu = InputView.orderMenuInput();
 
-        orderService.createOrder(visitDate, orderMenu);
+        OrderResponse orderResponse = orderService.createOrder(visitDate, orderMenu);
+        OutputView.printResult(orderResponse);
 
     }
 

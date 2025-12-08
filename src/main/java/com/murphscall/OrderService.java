@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class OrderService {
-    private PosCounter posCounter;
+    private final PosCounter posCounter;
 
     public OrderService(PosCounter posCounter) {
         this.posCounter = posCounter;
     }
 
-    public void createOrder(String visitDate, String menus){
+    public OrderResponse createOrder(String visitDate, String menus){
 
         // 문자열 파싱
         int day = Integer.parseInt(visitDate);
@@ -20,7 +20,7 @@ public class OrderService {
         // order 만들기
         Order order  = new Order(orderLines, date);
 
-        posCounter.processOrder(order);
+        return posCounter.processOrder(order);
 
     }
 

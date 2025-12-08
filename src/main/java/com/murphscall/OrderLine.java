@@ -20,4 +20,16 @@ public class OrderLine {
     public Money getLineAmount() {
         return lineAmount;
     }
+
+    public boolean isSameType(FoodType type){
+        return this.menu.getFoodType().equals(type);
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
 }

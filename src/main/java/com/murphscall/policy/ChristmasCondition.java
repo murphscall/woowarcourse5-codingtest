@@ -1,8 +1,10 @@
-package com.murphscall;
+package com.murphscall.policy;
 
+import com.murphscall.DiscountCondition;
+import com.murphscall.Order;
 import java.time.LocalDate;
 
-public class ChristmasCondition implements DiscountCondition{
+public class ChristmasCondition implements DiscountCondition {
     @Override
     public boolean isSatisfiedBy(Order order) {
 

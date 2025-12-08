@@ -1,15 +1,18 @@
-package com.murphscall;
+package com.murphscall.policy;
 
+import com.murphscall.DiscountCondition;
+import com.murphscall.DiscountPolicy;
+import com.murphscall.Money;
+import com.murphscall.Order;
 import java.time.LocalDate;
-import java.util.List;
 
 public class ChristmasPolicy extends DiscountPolicy {
 
     private static final int BASE_DISCOUNT = 1_000;
     private static final int DAILY_INCREMENT = 100;
 
-    protected ChristmasPolicy(DiscountCondition... conditions) {
-        super(conditions);
+    public ChristmasPolicy(DiscountCondition... conditions) {
+        super("크리스마스 할인",conditions);
     }
 
     @Override

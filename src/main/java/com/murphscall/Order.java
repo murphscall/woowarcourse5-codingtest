@@ -28,4 +28,8 @@ public class Order {
     public Money getTotalAmount() {
         return totalAmount;
     }
+
+    public List<OrderLine> getOrderLines() {
+        return orderLines;
+    }
 }

@@ -1,6 +1,8 @@
 package com.murphscall;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Money {
@@ -59,7 +61,8 @@ public class Money {
     }
 
     public String toString() {
-        return amount.toString() + "원";
+        NumberFormat formatter = NumberFormat.getNumberInstance(Locale.KOREA);
+        return formatter.format(amount) + "원";
     }
 
 
