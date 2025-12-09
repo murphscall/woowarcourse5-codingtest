@@ -1,7 +1,7 @@
 package com.murphscall.policy;
 
-import com.murphscall.Money;
-import com.murphscall.Order;
+import com.murphscall.domain.Money;
+import com.murphscall.domain.Order;
 import com.murphscall.policy.condition.DiscountCondition;
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.murphscall;
+package com.murphscall.enums;
 
 public enum FoodType {
     APPETIZER("애피타이저"),

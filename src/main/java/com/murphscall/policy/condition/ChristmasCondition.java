@@ -1,6 +1,6 @@
 package com.murphscall.policy.condition;
 
-import com.murphscall.Order;
+import com.murphscall.domain.Order;
 import java.time.LocalDate;
 
 public class ChristmasCondition implements DiscountCondition {

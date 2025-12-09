@@ -1,4 +1,4 @@
-package com.murphscall;
+package com.murphscall.domain;
 
 import java.time.LocalDate;
 import java.util.List;

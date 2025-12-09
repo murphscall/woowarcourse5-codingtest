@@ -1,8 +1,8 @@
 package com.murphscall.policy;
 
 import com.murphscall.policy.condition.DiscountCondition;
-import com.murphscall.Money;
-import com.murphscall.Order;
+import com.murphscall.domain.Money;
+import com.murphscall.domain.Order;
 import java.time.LocalDate;
 
 public class ChristmasPolicy extends DiscountPolicy {

@@ -1,10 +1,10 @@
 package com.murphscall.policy;
 
 import com.murphscall.policy.condition.DiscountCondition;
-import com.murphscall.FoodType;
-import com.murphscall.Money;
-import com.murphscall.Order;
-import com.murphscall.OrderLine;
+import com.murphscall.enums.FoodType;
+import com.murphscall.domain.Money;
+import com.murphscall.domain.Order;
+import com.murphscall.domain.OrderLine;
 
 public class DesertPolicy extends DiscountPolicy {
 

@@ -1,4 +1,6 @@
-package com.murphscall;
+package com.murphscall.enums;
+
+import com.murphscall.domain.Money;
 
 public enum Menu {
     // 애피타이저

@@ -1,7 +1,7 @@
 package com.murphscall.policy.condition;
 
-import com.murphscall.Money;
-import com.murphscall.Order;
+import com.murphscall.domain.Money;
+import com.murphscall.domain.Order;
 
 public class PresentCondition implements DiscountCondition {
 

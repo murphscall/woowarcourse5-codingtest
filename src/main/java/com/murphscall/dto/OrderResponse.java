@@ -1,5 +1,7 @@
-package com.murphscall;
+package com.murphscall.dto;
 
+import com.murphscall.domain.Money;
+import com.murphscall.domain.OrderLine;
 import java.util.List;
 
 public class OrderResponse {

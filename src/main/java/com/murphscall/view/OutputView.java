@@ -1,6 +1,10 @@
-package com.murphscall;
+package com.murphscall.view;
 
 
+import com.murphscall.domain.Money;
+import com.murphscall.domain.OrderLine;
+import com.murphscall.dto.DiscountResult;
+import com.murphscall.dto.OrderResponse;
 import java.util.List;
 
 public class OutputView {

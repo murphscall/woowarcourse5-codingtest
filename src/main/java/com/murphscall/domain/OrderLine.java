@@ -1,5 +1,8 @@
-package com.murphscall;
+package com.murphscall.domain;
 
+
+import com.murphscall.enums.FoodType;
+import com.murphscall.enums.Menu;
 
 public class OrderLine {
     private final Menu menu;

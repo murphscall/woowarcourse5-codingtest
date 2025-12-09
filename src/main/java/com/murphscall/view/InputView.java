@@ -1,4 +1,4 @@
-package com.murphscall;
+package com.murphscall.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
