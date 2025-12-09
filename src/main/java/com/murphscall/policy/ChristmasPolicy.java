@@ -1,7 +1,6 @@
 package com.murphscall.policy;
 
-import com.murphscall.DiscountCondition;
-import com.murphscall.DiscountPolicy;
+import com.murphscall.policy.condition.DiscountCondition;
 import com.murphscall.Money;
 import com.murphscall.Order;
 import java.time.LocalDate;

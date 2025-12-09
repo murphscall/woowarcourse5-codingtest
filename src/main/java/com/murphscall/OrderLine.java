@@ -32,4 +32,9 @@ public class OrderLine {
     public Menu getMenu() {
         return menu;
     }
+
+    @Override
+    public String toString() {
+        return menu.getDisplayName() + " " + quantity + "개";
+    }
 }

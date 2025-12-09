@@ -1,6 +1,5 @@
-package com.murphscall.policy;
+package com.murphscall.policy.condition;
 
-import com.murphscall.DiscountCondition;
 import com.murphscall.Order;
 import java.time.LocalDate;
 

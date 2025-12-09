@@ -1,6 +1,7 @@
 package com.murphscall;
 
 
+import com.murphscall.policy.DiscountPolicy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,9 +22,17 @@ public class PosCounter {
         Money totalPrice = order.getTotalAmount();
         // 혜택 내역
         List<DiscountResult> discountResults = calculateTotalDiscount(order);
+        // 총 혜택 금액
+        Money totalDiscountMoney =  discountResults.stream()
+                .map(DiscountResult::discountAmount)
+                .reduce(Money.ZERO, Money::plus);
+        // 실제 할인 금액
+        Money totalDiscountMoney2 = totalDiscountMoney.minus(Menu.fromDisplayName("샴페인").getWons());
 
+        // 예상 결제 금액
+        Money paymentPrice = totalPrice.minus(totalDiscountMoney2);
 
-        return OrderResponse.of(orderLines, totalPrice, discountResults);
+        return OrderResponse.of(orderLines, totalPrice, discountResults, totalDiscountMoney, paymentPrice);
     }
 
     private List<DiscountResult> calculateTotalDiscount(Order order) {
