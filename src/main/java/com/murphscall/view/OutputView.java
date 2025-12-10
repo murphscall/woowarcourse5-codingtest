@@ -14,7 +14,7 @@ public class OutputView {
     public static void printResult(OrderResponse orderResponse) {
         printOrderMenus(orderResponse.getLines());
         printBeforeDiscountTotalPrice(orderResponse.getNoDiscountTotalPrice());
-        printPresentMenu(orderResponse.getDiscountResults());
+        printPresentMenu(orderResponse.isGift());
         printDiscountResults(orderResponse.getDiscountResults());
         printDiscountMoney(orderResponse.getTotalDiscountPrice());
         printTotalPaymentPrice(orderResponse.getTotalPaymentPrice());
@@ -34,9 +34,8 @@ public class OutputView {
         System.out.println(money.toString());
     }
 
-    public static void printPresentMenu(List<DiscountResult> discountResults){
+    public static void printPresentMenu(boolean isGift){
         System.out.println("\n<증정 메뉴>");
-        boolean isGift = discountResults.stream().anyMatch(result -> result.policyName().equals("증정 이벤트"));
         String result = isGift ? "샴페인 1개" : "없음";
         System.out.println(result);
     }

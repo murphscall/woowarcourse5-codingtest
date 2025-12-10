@@ -11,8 +11,8 @@ public class DesertPolicy extends DiscountPolicy {
 
     private static final Money DISCOUNT_PER_DESSERT = Money.wons(2_023);
 
-    public DesertPolicy(DiscountCondition... conditions) {
-        super("평일 할인", DiscountType.DISCOUNT, conditions);
+    public DesertPolicy(String name, DiscountCondition... conditions) {
+        super(name, DiscountType.DISCOUNT, conditions);
     }
 
     @Override

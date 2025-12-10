@@ -7,7 +7,7 @@ import com.murphscall.view.InputView;
 import com.murphscall.view.OutputView;
 
 public class OrderController {
-    private OrderService orderService;
+    private final OrderService orderService;
 
     public OrderController(OrderService orderService) {
         this.orderService = orderService;

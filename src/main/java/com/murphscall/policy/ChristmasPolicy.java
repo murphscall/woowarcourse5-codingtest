@@ -8,11 +8,13 @@ import java.time.LocalDate;
 
 public class ChristmasPolicy extends DiscountPolicy {
 
-    private static final int BASE_DISCOUNT = 1_000;
-    private static final int DAILY_INCREMENT = 100;
+    private final int baseDiscount;
+    private final int dailyIncrement;
 
-    public ChristmasPolicy(DiscountCondition... conditions) {
-        super("크리스마스 할인", DiscountType.DISCOUNT, conditions);
+    public ChristmasPolicy(String name,int baseDiscount, int dailyIncrement, DiscountCondition... conditions) {
+        super(name, DiscountType.DISCOUNT, conditions);
+        this.baseDiscount = baseDiscount;
+        this.dailyIncrement = dailyIncrement;
     }
 
     @Override
@@ -20,7 +22,7 @@ public class ChristmasPolicy extends DiscountPolicy {
         LocalDate date = order.getOrderedAt();
         int day = date.getDayOfMonth();
 
-        int amount = BASE_DISCOUNT + (day - 1) * DAILY_INCREMENT;
+        int amount = baseDiscount + (day - 1) * dailyIncrement;
 
         return Money.wons(amount);
     }

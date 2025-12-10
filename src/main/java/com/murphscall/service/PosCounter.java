@@ -29,6 +29,8 @@ public class PosCounter {
         Money totalPrice = order.getTotalAmount();
         // 혜택 내역
         List<DiscountResult> discountResults = calculateTotalDiscount(order);
+        // 증정 여부
+        boolean isGift = discountResults.stream().anyMatch(result -> result.policyName().equals("증정 이벤트"));
         // 총 혜택 금액
         Money totalBenefitAmount = discountResults.stream()
                 .map(DiscountResult::discountAmount)
@@ -42,7 +44,7 @@ public class PosCounter {
         // 예상 결제 금액
         Money paymentPrice = totalPrice.minus(actualDiscountAmount);
 
-        return OrderResponse.of(orderLines, totalPrice, discountResults, totalBenefitAmount, paymentPrice);
+        return OrderResponse.of(orderLines, totalPrice, discountResults, isGift , totalBenefitAmount, paymentPrice);
     }
 
     private List<DiscountResult> calculateTotalDiscount(Order order) {

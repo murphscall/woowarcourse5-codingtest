@@ -7,14 +7,15 @@ import com.murphscall.policy.condition.DiscountCondition;
 
 public class SpecialPolicy extends DiscountPolicy{
 
-    private static final Money SPECIAL_PER = Money.wons(1_000);
+    private final Money specialDiscount;
 
-    public SpecialPolicy(DiscountCondition... conditions) {
-        super("특별 할인", DiscountType.DISCOUNT, conditions);
+    public SpecialPolicy(String name, int specialDiscount, DiscountCondition... conditions) {
+        super(name, DiscountType.DISCOUNT, conditions);
+        this.specialDiscount = Money.wons(specialDiscount);
     }
 
     @Override
     protected Money getDiscountAmount(Order order) {
-        return SPECIAL_PER;
+        return specialDiscount;
     }
 }

@@ -9,10 +9,11 @@ import com.murphscall.policy.condition.DiscountCondition;
 
 public class HolidayPolicy extends DiscountPolicy{
 
-    private static final Money DISCOUNT_PER_HOLIDAY = Money.wons(2_023);
+    private final Money discountHoliday;
 
-    public HolidayPolicy(DiscountCondition... conditions) {
-        super("주말 할인", DiscountType.DISCOUNT, conditions);
+    public HolidayPolicy(String name, int discountHoliday, DiscountCondition... conditions) {
+        super(name, DiscountType.DISCOUNT, conditions);
+        this.discountHoliday = Money.wons(discountHoliday);
     }
 
     @Override
@@ -27,6 +28,6 @@ public class HolidayPolicy extends DiscountPolicy{
             return Money.ZERO;
         }
 
-        return DISCOUNT_PER_HOLIDAY.times(holidayCount);
+        return discountHoliday.times(holidayCount);
     }
 }

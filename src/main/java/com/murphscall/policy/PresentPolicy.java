@@ -10,8 +10,8 @@ public class PresentPolicy extends DiscountPolicy {
 
     private final Menu presentMenu;
 
-    public PresentPolicy(Menu presentMenu, DiscountCondition... conditions) {
-        super("증정 이벤트", DiscountType.GIFT, conditions);
+    public PresentPolicy(Menu presentMenu, String name, DiscountCondition... conditions) {
+        super(name, DiscountType.GIFT, conditions);
         this.presentMenu = presentMenu;
     }
 
