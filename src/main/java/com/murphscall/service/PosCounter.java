@@ -1,6 +1,7 @@
 package com.murphscall.service;
 
 
+import com.murphscall.enums.DiscountType;
 import com.murphscall.enums.Menu;
 import com.murphscall.domain.Money;
 import com.murphscall.domain.Order;
@@ -29,16 +30,19 @@ public class PosCounter {
         // 혜택 내역
         List<DiscountResult> discountResults = calculateTotalDiscount(order);
         // 총 혜택 금액
-        Money totalDiscountMoney =  discountResults.stream()
+        Money totalBenefitAmount = discountResults.stream()
                 .map(DiscountResult::discountAmount)
                 .reduce(Money.ZERO, Money::plus);
         // 실제 할인 금액
-        Money totalDiscountMoney2 = totalDiscountMoney.minus(Menu.fromDisplayName("샴페인").getWons());
+        Money actualDiscountAmount = discountResults.stream()
+                .filter(result -> result.discountType() == DiscountType.DISCOUNT)
+                .map(DiscountResult::discountAmount)
+                .reduce(Money.ZERO, Money::plus);
 
         // 예상 결제 금액
-        Money paymentPrice = totalPrice.minus(totalDiscountMoney2);
+        Money paymentPrice = totalPrice.minus(actualDiscountAmount);
 
-        return OrderResponse.of(orderLines, totalPrice, discountResults, totalDiscountMoney, paymentPrice);
+        return OrderResponse.of(orderLines, totalPrice, discountResults, totalBenefitAmount, paymentPrice);
     }
 
     private List<DiscountResult> calculateTotalDiscount(Order order) {
@@ -47,11 +51,11 @@ public class PosCounter {
 
         for(DiscountPolicy policy : discountPolicies){
             Money discount = policy.calculateDiscountAmount(order);
-            result.add(new DiscountResult(policy.getName(), discount));
+            if (!Money.ZERO.equals(discount)) {
+                result.add(new DiscountResult(policy.getName(), discount , policy.getDiscountType()));
+            }
         }
         return result;
     }
-
-
 
 }

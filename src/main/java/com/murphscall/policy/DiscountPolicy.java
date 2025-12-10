@@ -2,16 +2,19 @@ package com.murphscall.policy;
 
 import com.murphscall.domain.Money;
 import com.murphscall.domain.Order;
+import com.murphscall.enums.DiscountType;
 import com.murphscall.policy.condition.DiscountCondition;
 import java.util.Arrays;
 import java.util.List;
 
 public abstract class DiscountPolicy {
     private final String name;
+    private final DiscountType discountType;
     private final List<DiscountCondition> conditions;
 
-    protected DiscountPolicy(String name, DiscountCondition... conditions) {
+    protected DiscountPolicy(String name, DiscountType discountType, DiscountCondition... conditions) {
         this.name = name;
+        this.discountType = discountType;
         this.conditions = Arrays.asList(conditions);
     }
 
@@ -29,6 +32,9 @@ public abstract class DiscountPolicy {
         return name;
     }
 
-    protected abstract Money getDiscountAmount(Order order);
+    public DiscountType getDiscountType() {
+        return discountType;
+    }
 
+    protected abstract Money getDiscountAmount(Order order);
 }

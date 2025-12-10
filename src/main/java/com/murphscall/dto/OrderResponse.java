@@ -2,7 +2,9 @@ package com.murphscall.dto;
 
 import com.murphscall.domain.Money;
 import com.murphscall.domain.OrderLine;
+import com.murphscall.enums.Badge;
 import java.util.List;
+import java.util.Optional;
 
 public class OrderResponse {
     private List<OrderLine> lines;
@@ -10,6 +12,7 @@ public class OrderResponse {
     private List<DiscountResult> discountResults;
     private Money totalDiscountPrice;
     private Money totalPaymentPrice;
+    private Badge badge;
 
     private OrderResponse(List<OrderLine> lines,
                           Money noDiscountTotalPrice,
@@ -22,6 +25,7 @@ public class OrderResponse {
         this.discountResults = discountResults;
         this.totalDiscountPrice = totalDiscountPrice;
         this.totalPaymentPrice = totalPaymentPrice;
+        this.badge = Badge.of(totalDiscountPrice).orElse(null);
     }
 
     public static OrderResponse of(
@@ -34,6 +38,9 @@ public class OrderResponse {
         return new OrderResponse(lines, totalPrice, discountResults, totalDiscountPrice, totalPaymentPrice);
     }
 
+    public Optional<Badge> getBadge() {
+        return Optional.ofNullable(badge);
+    }
 
     public List<OrderLine> getLines() {
         return lines;

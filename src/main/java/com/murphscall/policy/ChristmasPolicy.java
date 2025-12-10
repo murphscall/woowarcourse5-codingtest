@@ -1,5 +1,6 @@
 package com.murphscall.policy;
 
+import com.murphscall.enums.DiscountType;
 import com.murphscall.policy.condition.DiscountCondition;
 import com.murphscall.domain.Money;
 import com.murphscall.domain.Order;
@@ -11,7 +12,7 @@ public class ChristmasPolicy extends DiscountPolicy {
     private static final int DAILY_INCREMENT = 100;
 
     public ChristmasPolicy(DiscountCondition... conditions) {
-        super("크리스마스 할인",conditions);
+        super("크리스마스 할인", DiscountType.DISCOUNT, conditions);
     }
 
     @Override
@@ -23,5 +24,4 @@ public class ChristmasPolicy extends DiscountPolicy {
 
         return Money.wons(amount);
     }
-
 }

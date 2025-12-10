@@ -1,5 +1,6 @@
 package com.murphscall.policy;
 
+import com.murphscall.enums.DiscountType;
 import com.murphscall.policy.condition.DiscountCondition;
 import com.murphscall.enums.FoodType;
 import com.murphscall.domain.Money;
@@ -11,7 +12,7 @@ public class DesertPolicy extends DiscountPolicy {
     private static final Money DISCOUNT_PER_DESSERT = Money.wons(2_023);
 
     public DesertPolicy(DiscountCondition... conditions) {
-        super("평일할인", conditions);
+        super("평일 할인", DiscountType.DISCOUNT, conditions);
     }
 
     @Override
